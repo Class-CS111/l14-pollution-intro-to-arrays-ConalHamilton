@@ -1,6 +1,6 @@
-// YOUR NAME:
-// COLLABORATORS:
-// LAST MODIFIED DATE: 
+// YOUR NAME: Conal Hamilton 
+// COLLABORATORS: None
+// LAST MODIFIED DATE: March 31 2025 
 /*
 Yearly Global Atmospheric CO₂ Levels (parts per million)
 2001: 371.32 ppm
@@ -32,13 +32,34 @@ class Main
 
   public static void main(String[] args) 
   {
-		// DECLARATION SECTION
-
-		// INITIALIZATION SECTION
-
-		// INPUT SECTION 
-
-		// PROCESSING SECTION
+		// DECLARATION + INITIALIZATION SECTION
+    int sampleSize = 20;
+    double[] co2Levels = new double[sampleSize];
+    int[] years = new int[sampleSize];
+    co2Levels[0] = 371.32;
+    co2Levels[1] = 373.45;
+    co2Levels[2] = 375.98;
+    co2Levels[3] = 377.70;
+    co2Levels[4] = 379.98;
+    co2Levels[5] = 382.09;
+    co2Levels[6] = 384.03;
+    co2Levels[7] = 385.83;
+    co2Levels[8] = 387.64;
+    co2Levels[9] = 390.10;
+    co2Levels[10] = 391.85;
+    co2Levels[11] = 394.06;
+    co2Levels[12] = 396.74;
+    co2Levels[13] = 398.87;
+    co2Levels[14] = 401.01;
+    co2Levels[15] = 404.41;
+    co2Levels[16] = 406.76;
+    co2Levels[17] = 408.72;
+    co2Levels[18] = 411.66;
+    co2Levels[19] = 414.24;
+    for (int currentYear = 2001; currentYear <= 2000 + sampleSize; currentYear++) {
+        years[currentYear-2001] = currentYear;
+    }
+    double co2Growth = co2Levels[sampleSize-1] - co2Levels[0];
 
 		// OUTPUT SECTION
   
@@ -48,7 +69,24 @@ class Main
     //Column titles of graph
     System.out.print("Year");
     UtilityBelt.printCentered(55,"CO₂ in Atmosphere (ppm)");
-
+    Main.printGraph(sampleSize, years, co2Levels);
+    System.out.printf("From 2001 to " + (2000 + sampleSize) + " the average atmospheric CO₂ levels across the globe has grown %.2f ppm.", co2Growth);
   }
-
+    public static void printBar(double co2Levels)
+    {
+      double oilDrums = (int)(co2Levels - 360);
+      for (int i = 0; i < oilDrums; i++) {
+        System.out.print("🛢");
+      }
+      System.out.print(" " + co2Levels + "\n");
+    }
+    public static void printGraph(int sampleSize, int[] years, double[] co2Levels)
+    {
+      for (int i = 0; i < sampleSize; i++) {
+          int currentYear = years[i];
+          double currentLevel = co2Levels[i];
+          System.out.print(currentYear + " ");
+          Main.printBar(currentLevel);
+      }
+    }
 }
